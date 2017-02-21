@@ -310,12 +310,34 @@ public class Agregar extends javax.swing.JFrame {
                 contact.setGrupo(cb_grupo.getSelectedItem().toString());
                 contact.setNumero(tf_telefono.getText().toString());
                 contact.setSexo(cb_sexo.getSelectedItem().toString());
-                contact.setNota(tf_nota.getText().toString());
+                
                 
                 bt_volverActionPerformed(evt);
                 
+                //Ingreso Base de Datos
+        
+                Usuarios u = new Usuarios();
+                u.setNombre(tf_nombre.getText());
+                u.setApellido(tf_apellido.getText());
+                u.setTelefono(tf_telefono.getText());
+                u.setSexo(cb_sexo.getSelectedItem().toString());
+                u.setGrupo(cb_grupo.getSelectedItem().toString());
+                u.setNota(tf_nota.getText().toString());
+                u.setId(90);
+
+                ManejoDB dbm = new ManejoDB();
+                dbm.insertar(u);
+                dbm.close();
+
+                setVisible(false);
+                dispose();
+
+                new Menu().setVisible(true);
+                
                 
             }
+        
+        
                     
     }//GEN-LAST:event_bt_guardarActionPerformed
      
